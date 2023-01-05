@@ -17,6 +17,7 @@ $(document).ready(function(){
         data: {
             customer: customer,
             product_id: product_id,
+            shopify: ShopifyAnalytics,
         },
         dataType: "text",
         success: function(result){
