@@ -1,8 +1,13 @@
-var script = document.createElement('script');
-script.src = 'https://code.jquery.com/jquery-3.6.0.min.js';
-document.getElementsByTagName('head')[0].appendChild(script);
+/*
+Script to load on every page of a store, tracking users' clickstream data
+*/
 
 $(document).ready(function(){
+    console.log('tracker start');
+    var customer = ShopifyAnalytics.meta.page.customerId;
+    var product_id = ShopifyAnalytics.meta.product.id;
+    console.log(customer, product_id);
+    
     $.ajax({
         type: "POST",
         url: "http://localhost:8000/clickstream/",
@@ -10,8 +15,8 @@ $(document).ready(function(){
             'X-CSRFToken': $('[name="csrfmiddlewaretoken"]').val()
         },
         data: {
-            username: $('#username').val(),
-            password: $('#password').val(),
+            customer: customer,
+            product_id: product_id,
         },
         dataType: "text",
         success: function(result){
