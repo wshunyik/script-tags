@@ -15,7 +15,9 @@ $(document).ready(function(){
         var product_id = null;
     }
     
-    console.log(customer, product_id);
+    var store_id = ShopifyAnalytics.lib.integrations[0].defaultAttributes.shopId
+    var session_id = ShopifyAnalytics.lib.integrations[0].defaultAttributes.visitToken
+    console.log(store_id, session_id, customer, product_id)
     
     $.ajax({
         type: "POST",
@@ -24,6 +26,8 @@ $(document).ready(function(){
             'X-CSRFToken': $('[name="csrfmiddlewaretoken"]').val()
         },
         data: {
+            store_id: store_id,
+            session_id: session_id,
             customer: customer,
             product_id: product_id,
             shopify: JSON.stringify(ShopifyAnalytics),
