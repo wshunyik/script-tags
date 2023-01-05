@@ -9,8 +9,12 @@ $(document).ready(function(){
     } catch (TypeError) {
         var customer = null;
     }
+    try {
+        var product_id = ShopifyAnalytics.meta.product.id;
+    } catch (TypeError) {
+        var product_id = null;
+    }
     
-    var product_id = ShopifyAnalytics.meta.product.id;
     console.log(customer, product_id);
     
     $.ajax({
