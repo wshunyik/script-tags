@@ -4,7 +4,12 @@ Script to load on every page of a store, tracking users' clickstream data
 
 $(document).ready(function(){
     console.log('tracker start');
-    var customer = ShopifyAnalytics.meta.page.customerId;
+    try {
+        var customer = ShopifyAnalytics.meta.page.customerId;
+    } catch (TypeError) {
+        var customer = null;
+    }
+    
     var product_id = ShopifyAnalytics.meta.product.id;
     console.log(customer, product_id);
     
